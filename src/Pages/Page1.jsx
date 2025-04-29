@@ -3,7 +3,7 @@ import Hero from "../Components/Hero";
 
 export default function Page1() {
   return (
-    <div className=" min-h-screen">
+    <div className="sm:h-screen lg:max-h-screen">
       {/*Navbar*/}
       <NavBar />
       {/*Hero Section */}
