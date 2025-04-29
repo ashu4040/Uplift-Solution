@@ -33,30 +33,29 @@ export default function Services() {
   ];
 
   useGSAP(() => {
-    gsap.utils.toArray(".box").forEach((box) => {
-      gsap.from(box, {
-        y: 150,
-        opacity: 0,
-        duration: 1.5,
-        scrollTrigger: {
-          trigger: box,
-          start: "top 85%",
-          end: "top -200%",
-          toggleActions: "play none none reverse",
-        },
-      });
+    gsap.from(".box", {
+      y: 100,
+      opacity: 0,
+      duration: 1.2,
+      stagger: 0.2,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".box",
+        start: "top 90%", // More mobile-friendly
+        toggleActions: "play none none none", // Only play once on scroll down
+      },
     });
   });
 
   return (
-    <section className=" mt-8 md:mt-0 text-center px-4 md:px-8 xl:px-32">
-      <h2 className="text-4xl font-bold text-gray-800">Services</h2>
-      <p className="text-gray-600 mt-2">
+    <section className="mt-12 text-center px-4 md:px-8 xl:px-32">
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Services</h2>
+      <p className="text-gray-600 mt-2 text-sm md:text-base">
         Discover how we help developers and IT solution companies achieve growth
         and innovation through smart digital strategies.
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mt-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mt-8">
         {caseStudies.map((study, index) => (
           <div key={index} className="box bg-white rounded-2xl shadow-lg p-6">
             <img

@@ -27,7 +27,7 @@ export default function Page1() {
   }, []);
 
   return (
-    <div className="sm:h-screen lg:max-h-screen">
+    <div className="h-min-screen">
       <div ref={navRef}>
         <NavBar />
       </div>

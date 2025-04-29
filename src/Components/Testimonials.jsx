@@ -14,30 +14,74 @@ const Testimonial = () => {
   ];
 
   useGSAP(() => {
-    const tl = gsap.timeline();
+    gsap.registerPlugin(ScrollTrigger);
 
-    tl.from(".leftDiv", {
-      x: -200,
-      opacity: 0,
-      duration: 3,
-      delay: 0.3,
-      scrollTrigger: {
-        trigger: ".leftDiv",
-        start: "top 110%",
-        scrub: 1,
-      },
-    }).from(".rightDiv", {
-      x: 200,
-      opacity: 0,
-      duration: 3,
-      delay: 0.3,
-      scrollTrigger: {
-        trigger: ".rightDiv",
-        start: "top 110%",
-        scrub: 1,
-      },
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1024px)", () => {
+      const tl = gsap.timeline();
+
+      tl.from(".leftDiv", {
+        x: -100,
+        opacity: 0,
+        duration: 2,
+        delay: 0.5,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".leftDiv",
+          start: "top 75%",
+          end: "top 65%",
+          toggleActions: "play none none reverse",
+          scrub: 2,
+        },
+      }).from(".rightDiv", {
+        x: 100,
+        opacity: 0,
+        duration: 2,
+        delay: 0.5,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".rightDiv",
+          start: "top 75%",
+          end: "top 65%",
+          toggleActions: "play none none reverse",
+          scrub: 2,
+        },
+      });
     });
-  });
+
+    mm.add("(max-width: 1023px)", () => {
+      const tl = gsap.timeline();
+
+      tl.from(".leftDiv", {
+        scale: 0.85,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".leftDiv",
+          start: "top 90%", // Trigger when element is near viewport
+          end: "top 70%",
+          toggleActions: "play none none reverse",
+          scrub: 1,
+        },
+      }).from(".rightDiv", {
+        scale: 0.85,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".rightDiv",
+          start: "top 90%",
+          end: "top 70%",
+          toggleActions: "play none none reverse",
+          scrub: 1,
+        },
+      });
+    });
+
+    return () => mm.revert(); // Clean up media queries on unmount
+  }, []);
 
   return (
     <div className="p-10 xl:ml-46 xl:mr-46">
@@ -82,8 +126,8 @@ const Testimonial = () => {
           Empowering businesses with innovative IT solutions and support.
         </p>
         <div className="flex justify-center items-center gap-4 mt-4">
-          <div className="flex items-center gap-2">📞 +91 98187 80337</div>
-          <div className="flex items-center gap-2">📍 Gurgaon, Haryana</div>
+          <div className="flex items-center gap-2">📞 +91 999999999</div>
+          <div className="flex items-center gap-2">📍 xyz, state</div>
         </div>
       </footer>
     </div>
