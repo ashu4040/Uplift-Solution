@@ -39,7 +39,6 @@ const HowItWorks = () => {
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 1024px)", () => {
-      // Laptop screens and up
       gsap.utils
         .toArray([".img1", ".img2", ".img3", ".img4"])
         .forEach((cls, i) => {
@@ -57,7 +56,6 @@ const HowItWorks = () => {
     });
 
     mm.add("(max-width: 1023px)", () => {
-      // Tablets and smaller
       gsap.utils
         .toArray([".img1", ".img2", ".img3", ".img4"])
         .forEach((cls) => {
@@ -74,7 +72,7 @@ const HowItWorks = () => {
         });
     });
 
-    return () => mm.revert(); // cleanup
+    return () => mm.revert();
   }, []);
 
   return (

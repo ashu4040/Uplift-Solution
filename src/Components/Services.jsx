@@ -41,8 +41,8 @@ export default function Services() {
       ease: "power2.out",
       scrollTrigger: {
         trigger: ".box",
-        start: "top 90%", // More mobile-friendly
-        toggleActions: "play none none none", // Only play once on scroll down
+        start: "top 90%",
+        toggleActions: "play none none none",
       },
     });
   });

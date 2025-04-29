@@ -9,21 +9,34 @@ export default function WhyChooseUs() {
   const containerRef = useRef();
 
   useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 75%",
-        toggleActions: "play none none reverse",
-      },
-    });
+    const mm = gsap.matchMedia();
+    const elements = containerRef.current.querySelectorAll(".box-item");
 
-    tl.from(containerRef.current.querySelectorAll(".box-item"), {
-      scale: 0,
-      opacity: 0,
-      duration: 0.6,
-      stagger: 0.2,
-      ease: "back.out(1.7)",
-    });
+    mm.add(
+      {
+        isMobile: "(max-width: 767px)",
+        isDesktop: "(min-width: 768px)",
+      },
+      (context) => {
+        const { isMobile } = context.conditions;
+
+        gsap.from(elements, {
+          scale: isMobile ? 0.8 : 0,
+          opacity: 0,
+          duration: isMobile ? 0.8 : 0.6,
+          stagger: 0.25,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: isMobile ? "top 30%" : "top 80%",
+            end: "top 40%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      }
+    );
+
+    return () => mm.revert(); // Cleanup on unmount
   }, []);
 
   const benefits = [

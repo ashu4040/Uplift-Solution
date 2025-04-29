@@ -60,7 +60,7 @@ const Testimonial = () => {
         ease: "power2.out",
         scrollTrigger: {
           trigger: ".leftDiv",
-          start: "top 90%", // Trigger when element is near viewport
+          start: "top 90%",
           end: "top 70%",
           toggleActions: "play none none reverse",
           scrub: 1,
@@ -80,7 +80,7 @@ const Testimonial = () => {
       });
     });
 
-    return () => mm.revert(); // Clean up media queries on unmount
+    return () => mm.revert();
   }, []);
 
   return (
