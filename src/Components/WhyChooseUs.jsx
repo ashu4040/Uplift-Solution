@@ -1,4 +1,31 @@
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 export default function WhyChooseUs() {
+  const containerRef = useRef();
+
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 75%",
+        toggleActions: "play none none reverse",
+      },
+    });
+
+    tl.from(containerRef.current.querySelectorAll(".box-item"), {
+      scale: 0,
+      opacity: 0,
+      duration: 0.6,
+      stagger: 0.2,
+      ease: "back.out(1.7)",
+    });
+  }, []);
+
   const benefits = [
     {
       title: "Experienced Team",
@@ -27,7 +54,7 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <div className="py-16 px-6 md:px-12 xl:ml-46 xl:mr-46">
+    <div className="py-16 px-6 md:px-12 xl:ml-46 xl:mr-46" ref={containerRef}>
       <div className="text-center">
         <h2 className="text-3xl md:text-4xl font-bold">
           Why Choose <span className="text-purple-600">Our Services?</span>
@@ -39,8 +66,11 @@ export default function WhyChooseUs() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-10">
-        {benefits.map((benefit) => (
-          <div className="bg-white p-6 rounded-xl shadow-md flex gap-4 items-center relative">
+        {benefits.map((benefit, index) => (
+          <div
+            key={index}
+            className="box-item bg-white p-6 rounded-xl shadow-md flex gap-4 items-center relative"
+          >
             <img src={benefit.icon} alt={benefit.title} className="w-12 h-12" />
             <div>
               <h3 className="text-lg font-semibold">{benefit.title}</h3>

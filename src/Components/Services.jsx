@@ -1,3 +1,9 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 export default function Services() {
   const caseStudies = [
     {
@@ -18,13 +24,29 @@ export default function Services() {
     },
     {
       image:
-        "https://blog.codeasite.com/wp-content/uploads/2018/11/CSP-Microsoft-codeasite.jpg", // Cloud solutions
+        "https://blog.codeasite.com/wp-content/uploads/2018/11/CSP-Microsoft-codeasite.jpg",
       category: "Cloud Solutions Provider",
       title: "Transforming SkyNet’s Cloud Visibility",
       description:
         "We helped SkyNet Solutions establish a stronger digital presence, generate cloud service leads, and optimize their client acquisition funnel.",
     },
   ];
+
+  useGSAP(() => {
+    gsap.utils.toArray(".box").forEach((box) => {
+      gsap.from(box, {
+        y: 150,
+        opacity: 0,
+        duration: 1.5,
+        scrollTrigger: {
+          trigger: box,
+          start: "top 75%",
+          end: "top 0%",
+          toggleActions: "play none none reverse",
+        },
+      });
+    });
+  });
 
   return (
     <section className=" mt-8 md:mt-0 text-center px-4 md:px-8 xl:px-32">
@@ -36,7 +58,7 @@ export default function Services() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mt-6">
         {caseStudies.map((study, index) => (
-          <div key={index} className="bg-white rounded-2xl shadow-lg p-6">
+          <div key={index} className="box bg-white rounded-2xl shadow-lg p-6">
             <img
               src={study.image}
               alt={study.title}

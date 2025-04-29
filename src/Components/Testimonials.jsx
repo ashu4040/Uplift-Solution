@@ -1,4 +1,7 @@
 import Form from "./Form";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Testimonial = () => {
   const faqs = [
@@ -10,6 +13,32 @@ const Testimonial = () => {
     "How do you handle support and maintenance for your IT solutions?",
   ];
 
+  useGSAP(() => {
+    const tl = gsap.timeline();
+
+    tl.from(".leftDiv", {
+      x: -200,
+      opacity: 0,
+      duration: 3,
+      delay: 0.3,
+      scrollTrigger: {
+        trigger: ".leftDiv",
+        start: "top 110%",
+        scrub: 1,
+      },
+    }).from(".rightDiv", {
+      x: 200,
+      opacity: 0,
+      duration: 3,
+      delay: 0.3,
+      scrollTrigger: {
+        trigger: ".rightDiv",
+        start: "top 110%",
+        scrub: 1,
+      },
+    });
+  });
+
   return (
     <div className="p-10 xl:ml-46 xl:mr-46">
       <h2 className="text-center text-3xl font-bold mb-6">
@@ -19,10 +48,8 @@ const Testimonial = () => {
         Helping businesses transform with cutting-edge IT solutions!
       </p>
 
-      {/* Removed Testimonials Section */}
-
       <div className="flex flex-col md:flex-row justify-between gap-6">
-        <div className="md:w-1/2">
+        <div className="leftDiv md:w-1/2">
           <h3 className="text-xl font-semibold mb-4">
             Frequently Asked Questions
           </h3>
@@ -41,7 +68,7 @@ const Testimonial = () => {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-2xl border-t-5 border-t-purple-600 md:w-1/2 max-w-md">
+        <div className="rightDiv bg-white p-6 rounded-lg shadow-2xl border-t-5 border-t-purple-600 md:w-1/2 max-w-md">
           <h2 className="text-xl font-bold text-gray-800">
             Transform Your IT Infrastructure
           </h2>

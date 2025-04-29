@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useRef } from "react";
 import Form from "./Form";
 
 const Hero = () => {
+  const leftParagraph = useRef();
+  const rightLogo = useRef();
+
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-around p-4 md:p-8 bg-purple-50  lg:h-[calc(100vh-23vh)]">
-      {/* Text Content */}
-      <div className="max-w-lg w-full space-y-4 text-center lg:text-left">
+      <div
+        ref={leftParagraph}
+        className="max-w-lg w-full space-y-4 text-center lg:text-left"
+      >
         <h1 className="text-2xl md:text-3xl xl:text-4xl font-bold text-purple-700">
           <span>Unleash Your Business Potential with Our</span>{" "}
           <span>IT Managed Services</span>
@@ -48,8 +53,10 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Form Section */}
-      <div className="bg-white w-full max-w-md p-6 mt-10 lg:mt-0 rounded-lg shadow-2xl border-t-4 border-purple-600">
+      <div
+        ref={rightLogo}
+        className="bg-white w-full max-w-md p-6 mt-10 lg:mt-0 rounded-lg shadow-2xl border-t-4 border-purple-600"
+      >
         <h2 className="text-lg md:text-xl font-bold text-gray-800 text-center lg:text-left mb-4">
           Let's Optimize Your IT Infrastructure
         </h2>
