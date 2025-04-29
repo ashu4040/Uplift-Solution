@@ -40,8 +40,8 @@ export default function Services() {
         duration: 1.5,
         scrollTrigger: {
           trigger: box,
-          start: "top 75%",
-          end: "top 0%",
+          start: "top 85%",
+          end: "top -200%",
           toggleActions: "play none none reverse",
         },
       });
